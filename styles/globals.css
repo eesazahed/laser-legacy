@@ -15,12 +15,49 @@ a {
   box-sizing: border-box;
 }
 
+textarea,
+input {
+  font-family: inherit;
+  padding: 10px;
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid;
+}
+
+button {
+  cursor: pointer;
+}
+
+textarea {
+  width: 80%;
+}
+
+.username {
+  text-decoration: underline;
+}
+
+@media (min-width: 600px) {
+  h1 {
+    font-size: 4rem;
+  }
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
     color: white;
-    background: black;
+    background-color: #383838;
+  }
+  textarea,
+  input {
+    border-color: #3e3e3e;
   }
 }

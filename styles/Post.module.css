@@ -1,0 +1,30 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  padding: 4rem 0;
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post {
+  min-width: 33.33vw;
+}
+
+.description {
+  line-height: 1.5;
+  margin: 4rem 0;
+  font-size: 1.5rem;
+}
+
+.copy {
+  background-color: grey;
+  border: none;
+  border-radius: 10px;
+  margin: 25px 25px 25px 10px;
+  padding: 10px;
+}

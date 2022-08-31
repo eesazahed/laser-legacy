@@ -1,0 +1,98 @@
+.info,
+.footer-options,
+.likes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.sender {
+  border-bottom: 1px solid grey;
+}
+
+.content {
+  padding: 10px 0px 10px 0px;
+}
+
+.content,
+.sender {
+  padding-left: 10px;
+}
+
+.info {
+  width: 80%;
+  justify-content: space-between;
+}
+
+.link {
+  color: #0070f3;
+  text-decoration: underline;
+}
+
+.sender-name {
+  font-size: 1.2rem;
+}
+
+.footer {
+  border-top: 1px solid grey;
+  border-radius: 0px 0px 10px 10px;
+  background-color: #ececec;
+}
+
+.footer-options {
+  font-size: 0.9rem;
+}
+
+.time {
+  color: grey;
+}
+
+.likes {
+  justify-content: space-evenly;
+  text-decoration: none;
+}
+
+.like,
+.unlike {
+  margin-right: 0.25rem;
+}
+
+.unlike {
+  color: red;
+}
+
+.unlike:hover {
+  color: #ff5858;
+}
+
+.delete {
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.delete i {
+  padding-left: 0.5px;
+}
+
+.delete:hover {
+  color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    border-color: grey;
+  }
+  .delete {
+    color: white;
+  }
+  .footer {
+    background-color: #1e1e1e;
+  }
+}

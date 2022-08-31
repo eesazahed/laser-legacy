@@ -1,0 +1,48 @@
+.thread {
+  padding: 10px 0px 10px 20px;
+  margin: 10px 0px 10px 0px;
+}
+
+.time {
+  color: grey;
+  font-size: small;
+}
+
+.reply p {
+  font-size: smaller;
+  color: #0070f3;
+  cursor: pointer;
+}
+
+.write {
+  width: 300px;
+}
+
+.delete p {
+  font-size: smaller;
+  color: #f30000;
+  cursor: pointer;
+}
+
+.reply-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.reply-container label,
+.reply-container textarea,
+.reply-container button {
+  margin: 10px;
+}
+
+.post {
+  background-color: #0070f3;
+  color: white;
+  padding: 8px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+}

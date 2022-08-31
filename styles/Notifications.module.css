@@ -1,0 +1,47 @@
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  padding: 4rem 0;
+  min-height: 100vh;
+  flex: 1;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  line-height: 1.5;
+  margin: 4rem 0;
+  font-size: 1.5rem;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.delete {
+  margin-bottom: 20px;
+  line-height: 1.15;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.delete:hover {
+  background-color: #ff7474;
+}
