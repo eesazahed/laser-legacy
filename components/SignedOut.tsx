@@ -7,9 +7,7 @@ const SignedOut: NextPage = () => {
     <main className={styles.main}>
       <h1 className={styles.title}>Welcome to LaserSocial</h1>
 
-      <p className={styles.description}>
-        An open-source social media platform.
-      </p>
+      <p className={styles.description}>A new social media platform.</p>
 
       <div className={styles.grid}>
         <Link href="auth/signin">

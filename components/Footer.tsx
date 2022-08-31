@@ -11,7 +11,11 @@ const Footer: NextPage = () => {
           <a>
             <u>About this site</u>
           </a>
-        </Link>
+        </Link>{" "}
+        &bull;{" "}
+        <a target="_blank" rel="noreferrer" href="mailto:eszhd1@gmail.com">
+          <u>Contact the developer</u>
+        </a>
       </p>
       <p>
         Developed by{" "}
