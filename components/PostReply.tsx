@@ -136,7 +136,7 @@ const PostReply: NextPage<Props> = ({ reply }) => {
           </div>
         )}
 
-        {Post.user && Post.user._id === reply.senderId && (
+        {Post.user && (Post.user.admin || Post.user._id === reply.senderId) && (
           <div className={styles.delete}>
             <p onClick={deleteReply}>Delete this reply</p>
           </div>

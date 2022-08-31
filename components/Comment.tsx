@@ -132,7 +132,7 @@ const Comment: NextPage<Props> = ({ comment }) => {
             </button>
           </div>
         )}
-        {Post.user && Post.user._id === comment.senderId && (
+        {Post.user && (Post.user.admin || Post.user._id === comment.senderId) && (
           <div className={styles.delete}>
             <p onClick={deleteComment}>Delete this comment</p>
           </div>
