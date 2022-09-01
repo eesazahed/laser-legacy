@@ -1,4 +1,4 @@
-import { ObjectId } from "mongodb"; //import type ???
+import { ObjectId } from "mongodb";
 
 interface TimestampId {
   _id: string;
