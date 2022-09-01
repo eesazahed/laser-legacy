@@ -90,6 +90,7 @@ const auth = async (req: NextApiRequest, res: NextApiResponse) => {
     secret: process.env.NEXTAUTH_SECRET,
     pages: {
       signIn: "/auth/signin",
+      newUser: "/auth/welcome",
     },
   });
 };

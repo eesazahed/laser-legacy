@@ -32,7 +32,7 @@ const Home: NextPage<Props> = ({ user, feed }) => {
       {status === "authenticated" && (
         <main className={styles.main}>
           <h1 className={styles.title}>
-            {greeting()} {user.username}.
+            {greeting()}, {user.username}.
           </h1>
 
           {feed.length > 0 ? (
