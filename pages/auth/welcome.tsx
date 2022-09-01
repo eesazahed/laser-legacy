@@ -15,7 +15,7 @@ const Welcome: NextPage = () => {
 
         <p className={styles.description}>
           Thanks for signing up!{" "}
-          <Link href="/settings">
+          <Link href="/">
             <a className={styles.link}>Let&apos;s go! &rarr;</a>
           </Link>
         </p>
