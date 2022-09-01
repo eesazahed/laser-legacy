@@ -2,11 +2,18 @@ import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import PageHead from "../../components/PageHead";
 import styles from "../../styles/Welcome.module.css";
 
 const Welcome: NextPage = () => {
   const { data: session, status } = useSession();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace(router.asPath);
+  }, [router]);
 
   return (
     <div className={styles.container}>
