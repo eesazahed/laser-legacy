@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "../styles/Navbar.module.css";
 import { useState } from "react";
@@ -32,7 +32,7 @@ const Navbar: NextPage = () => {
                 alt="LaserSocial Logo"
                 width={30}
                 height={30}
-                src="/../public/logo.png"
+                src="/logo.png"
               />
             </div>
             LaserSocial
@@ -40,18 +40,16 @@ const Navbar: NextPage = () => {
         </Link>
         <Links mobile={false} />
 
-        {status === "authenticated" && (
-          <div
-            className={styles.menu}
-            onClick={() => (showNav ? setShowNav(false) : setShowNav(true))}
-          >
-            {showNav ? (
-              <i className="bi bi-x-lg"></i>
-            ) : (
-              <i className="bi bi-list"></i>
-            )}
-          </div>
-        )}
+        <div
+          className={styles.menu}
+          onClick={() => (showNav ? setShowNav(false) : setShowNav(true))}
+        >
+          {showNav ? (
+            <i className="bi bi-x-lg"></i>
+          ) : (
+            <i className="bi bi-list"></i>
+          )}
+        </div>
       </nav>
 
       {showNav && (

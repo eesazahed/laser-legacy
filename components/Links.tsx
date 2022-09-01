@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "../styles/Navbar.module.css";
 import useSWR from "swr";
@@ -49,10 +49,22 @@ const Links: NextPage<Props> = ({ mobile }) => {
                   <span className={styles.indicator}>{data}</span>
                 )}
               </div>
-              {mobile && <span>Notifications</span>}
+              {mobile && <span className={styles.text}>Notifications</span>}
             </a>
           </Link>
         </>
+      )}
+
+      {status === "unauthenticated" && (
+        <button className={styles.btn} onClick={() => signIn()}>
+          Sign In
+        </button>
+      )}
+
+      {status === "authenticated" && (
+        <button className={styles.btn} onClick={() => signOut()}>
+          Sign Out
+        </button>
       )}
     </div>
   );

@@ -43,16 +43,7 @@ const SignIn: NextPage<Props> = ({ providers }) => {
             <br />
             We use Google authentication as a quick and easy sign-in for users.
             Your email address, name, and photo will never be shared to
-            third-parties. If you&apos;d like, you can view our code at{" "}
-            <a
-              style={{ color: "#0070f3" }}
-              target="_blank"
-              rel="noreferrer"
-              href="https://github.com/eesazahed/"
-            >
-              <u>https://github.com/eesazahed/</u>
-            </a>{" "}
-            to view to information we collect.
+            third-parties.
           </p>
         </div>
       )}

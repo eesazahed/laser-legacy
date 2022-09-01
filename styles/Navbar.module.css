@@ -70,7 +70,19 @@
   display: none;
 }
 
+.btn {
+  background-color: #0070f3;
+  padding: 7.5px;
+  border: none;
+  border-radius: 10px;
+  color: white;
+}
+
 @media (min-width: 1200px) {
+  .btn {
+    margin-left: auto;
+  }
+
   .mobile {
     display: none;
     transition: 0.5s;
@@ -78,16 +90,16 @@
 }
 
 @media (max-width: 1200px) {
+  .desktop {
+    display: none;
+  }
+
   .container {
     flex-direction: column;
   }
 
   .menu {
     display: inline-block;
-  }
-
-  .desktop {
-    display: none;
   }
 
   .dropdown {
@@ -104,11 +116,12 @@
     align-items: flex-start;
   }
 
-  .link {
+  .link,
+  .btn {
     margin: 10px;
   }
 
-  .link span {
+  .link .text {
     margin-left: 10px;
   }
 }
