@@ -12,10 +12,9 @@ const Welcome: NextPage = () => {
       <PageHead title="Welcome" />
       <main className={styles.main}>
         <h1 className={styles.title}>Welcome</h1>
-
         <p className={styles.description}>
           Thanks for signing up!{" "}
-          <Link href="/">
+          <Link href="/settings">
             <a className={styles.link}>Let&apos;s go! &rarr;</a>
           </Link>
         </p>
