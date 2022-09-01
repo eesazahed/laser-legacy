@@ -1,8 +1,11 @@
 import clientPromise from "../lib/mongodb";
 import type { User } from "../types";
+import getUserFromSession from "./getUserFromSession";
 
-const getSuggestedProfiles = async () => {
+const getSuggestedProfiles = async (req: any) => {
   try {
+    const user = (await getUserFromSession(req)) as unknown as User;
+
     const users = (await clientPromise).db().collection("users");
     const userArray = (await users.find({}).toArray()) as unknown as User[];
     const suggested = [];
@@ -15,6 +18,10 @@ const getSuggestedProfiles = async () => {
         _id: thisUser.public._id,
       });
     }
+
+    suggested.filter(
+      (suggestedUser) => suggestedUser._id !== user._id.toString()
+    );
 
     let shuffled = suggested.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 3);

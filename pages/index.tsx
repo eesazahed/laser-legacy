@@ -91,7 +91,7 @@ export const getServerSideProps = async (context: any) => {
   if (session) {
     const user = (await getUserFromSession(context.req)) as unknown as User;
     const feed = await getFeed(context.req);
-    const suggested = await getSuggestedProfiles();
+    const suggested = await getSuggestedProfiles(context.req);
 
     if (user) {
       currentUser = user.public;
