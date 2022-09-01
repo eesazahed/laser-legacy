@@ -13,7 +13,6 @@ interface User {
   email: string;
   image: string;
   emailVerified: null;
-  ip: string | null;
   public: PublicUser;
 }
 
