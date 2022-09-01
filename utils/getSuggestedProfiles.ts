@@ -1,13 +1,5 @@
 import clientPromise from "../lib/mongodb";
-import type {
-  BasicUserProfile,
-  Follower,
-  PublicUser,
-  TimestampId,
-  User,
-} from "../types";
-import getBasicUserProfile from "./getBasicUserProfile";
-import getUserByUsername from "./getUserByUsername";
+import type { User } from "../types";
 
 const getSuggestedProfiles = async () => {
   try {
