@@ -18,7 +18,8 @@
 
 .content {
   word-wrap: break-word;
-  padding: 10px;
+  padding: 15px;
+  margin: 10px;
 }
 
 .content,
@@ -36,18 +37,14 @@
   text-decoration: underline;
 }
 
-.sender-name {
-  font-size: 1.2rem;
+.name {
+  margin: 10px;
 }
 
 .footer {
   border-top: 1px solid grey;
   border-radius: 0px 0px 10px 10px;
   background-color: #ececec;
-}
-
-.footer-options {
-  font-size: 0.9rem;
 }
 
 .time {
