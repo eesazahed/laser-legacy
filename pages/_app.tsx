@@ -9,11 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   return (
-    <SessionProvider
-      session={pageProps.session}
-      refetchInterval={2}
-      refetchOnWindowFocus={true}
-    >
+    <SessionProvider session={pageProps.session}>
       <Navbar />
       <Component {...pageProps} key={router.asPath} />
       <Footer />

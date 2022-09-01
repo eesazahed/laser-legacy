@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import PageHead from "../../components/PageHead";
 import styles from "../../styles/Welcome.module.css";
 
