@@ -3,6 +3,9 @@ import type { User } from "../../../types";
 import clientPromise from "../../../lib/mongodb";
 import getUserFromSession from "../../../utils/getUserFromSession";
 
+const Filter = require("bad-words"),
+  filter = new Filter();
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const db = (await clientPromise).db().collection("posts");
 
@@ -13,6 +16,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (!user) {
       return res.status(401).json({ message: "Invalid Auth", type: "auth" });
+    }
+
+    if (filter.isProfane(content)) {
+      return res.status(200).json({
+        message: "Please don't use any bad language.",
+        type: "server",
+      });
     }
 
     if (content.length <= 10 || content.length > 200) {

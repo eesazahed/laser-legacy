@@ -65,7 +65,7 @@ const auth = async (req: NextApiRequest, res: NextApiResponse) => {
                   $set: {
                     public: {
                       _id: user._id.toString(),
-                      name: user.name,
+                      name: `User ${user._id.toString().substring(14)}`,
                       username: `user_${user._id.toString().substring(14)}`,
                       bio: "",
                       followers: [],

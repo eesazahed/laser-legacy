@@ -4,6 +4,9 @@ import clientPromise from "../../../lib/mongodb";
 import getUserFromSession from "../../../utils/getUserFromSession";
 import getPostById from "../../../utils/getPostById";
 
+const Filter = require("bad-words"),
+  filter = new Filter();
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const db = (await clientPromise).db().collection("comments");
   const posts = (await clientPromise).db().collection("posts");
@@ -24,6 +27,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res
         .status(401)
         .json({ message: "Post doesn't exist", type: "server" });
+    }
+
+    if (filter.isProfane(data.comment)) {
+      return res.status(200).json({
+        message: "Please don't use any bad language.",
+        type: "server",
+      });
     }
 
     if (data.comment.length <= 0 || data.comment.length > 100) {

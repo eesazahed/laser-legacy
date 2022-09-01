@@ -3,6 +3,9 @@ import type { User } from "../../../types";
 import clientPromise from "../../../lib/mongodb";
 import getUserFromSession from "../../../utils/getUserFromSession";
 
+const Filter = require("bad-words"),
+  filter = new Filter();
+
 const notAllowedUsernames = [
   "new",
   "settings",
@@ -26,6 +29,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(401).json({ message: "Invalid Auth", type: "auth" });
     }
 
+    if (
+      filter.isProfane(data.name) ||
+      filter.isProfane(data.username) ||
+      filter.isProfane(data.bio)
+    ) {
+      return res.status(200).json({
+        message: "Please don't use any bad language.",
+        type: "server",
+      });
+    }
+
     if (data.name.length < 4 || data.name.length > 15) {
       return res.status(200).json({
         message: "Please enter a name between 4-15 characters.",
@@ -40,7 +54,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     ) {
       return res.status(200).json({
         message:
-          "Usernames can only contain letters, numbers, dashes, and underscores, and must be 4-15 characters in length.",
+          "Usernames must not contain any bad language, and can only contain letters, numbers, dashes, and underscores, and must be 4-15 characters in length.",
         type: "username",
       });
     }

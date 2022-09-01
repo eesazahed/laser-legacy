@@ -46,3 +46,15 @@
   border-radius: 100px;
   color: white;
 }
+
+@media (min-width: 1200px) {
+  .form {
+    width: 33.3vw;
+  }
+}
+
+@media (max-width: 1200px) {
+  .form {
+    width: 80vw;
+  }
+}

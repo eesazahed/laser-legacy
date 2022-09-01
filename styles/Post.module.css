@@ -11,10 +11,6 @@
   align-items: center;
 }
 
-.post {
-  min-width: 33.33vw;
-}
-
 .description {
   line-height: 1.5;
   margin: 4rem 0;
@@ -27,4 +23,16 @@
   border-radius: 10px;
   margin: 25px 25px 25px 10px;
   padding: 10px;
+}
+
+@media (min-width: 900px) {
+  .post {
+    width: 33.3vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .post {
+    width: 80vw;
+  }
 }

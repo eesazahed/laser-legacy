@@ -6,6 +6,9 @@ import getCommentById from "../../../utils/getCommentById";
 import getPostById from "../../../utils/getPostById";
 import getReplyById from "../../../utils/getReplyById";
 
+const Filter = require("bad-words"),
+  filter = new Filter();
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const db = (await clientPromise).db().collection("replies");
   const comments = (await clientPromise).db().collection("comments");
@@ -26,6 +29,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res
         .status(401)
         .json({ message: "Post doesn't exist", type: "server" });
+    }
+
+    if (filter.isProfane(data.reply)) {
+      return res.status(200).json({
+        message: "Please don't use any bad language.",
+        type: "server",
+      });
     }
 
     if (data.parentId) {

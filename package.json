@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next-auth/mongodb-adapter": "0.0.2-next.298",
+    "bad-words": "^3.0.4",
     "bootstrap-icons": "^1.9.1",
     "install": "^0.13.0",
     "mongodb": "^4.9.0",
