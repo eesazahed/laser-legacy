@@ -24,21 +24,21 @@ const Links: NextPage<Props> = ({ mobile }) => {
           <Link href="/new">
             <a className={styles.link}>
               <i className="bi bi-pencil-square"></i>
-              <span>New</span>
+              <span className={styles.text}>New</span>
             </a>
           </Link>
 
           <Link href="/settings">
             <a className={styles.link}>
               <i className="bi bi-gear"></i>
-              <span>Settings</span>
+              <span className={styles.text}>Settings</span>
             </a>
           </Link>
 
           <Link href="/profile">
             <a className={styles.link}>
               <i className="bi bi-person-circle"></i>
-              <span>Profile</span>
+              <span className={styles.text}>Profile</span>
             </a>
           </Link>
           <Link href="/notifications">
