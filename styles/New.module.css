@@ -30,21 +30,24 @@
 .form {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .new {
-  margin: 20px 10px 10px 10px;
-  padding: 10px;
+  margin: 50px 15px 10px 15px;
+  padding: 15px;
   width: inherit;
 }
 
 .btn {
-  margin: 10px;
-  padding: 10px;
+  margin: 15px;
+  padding: 15px;
   background-color: #0070f3;
   border: none;
-  border-radius: 100px;
+  border-radius: 10px;
   color: white;
+  width: inherit;
 }
 
 @media (min-width: 900px) {

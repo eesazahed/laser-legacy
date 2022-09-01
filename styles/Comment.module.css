@@ -25,17 +25,20 @@
 }
 
 .reply-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 30px;
 }
 
 .reply-container label,
 .reply-container textarea,
 .reply-container button {
-  margin: 10px;
+  width: inherit;
+  padding: 15px;
+  margin: 15px;
 }
 
 .post {

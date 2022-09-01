@@ -36,6 +36,11 @@
   flex-direction: column;
 }
 
+.form p,
+.form label {
+  padding-left: 15px;
+}
+
 .input,
 .bio,
 .btn {

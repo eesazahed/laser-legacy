@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { User } from "../../../types";
+import type { Post, User } from "../../../types";
 import clientPromise from "../../../lib/mongodb";
 import getUserFromSession from "../../../utils/getUserFromSession";
 
@@ -18,10 +18,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(401).json({ message: "Invalid Auth", type: "auth" });
     }
 
+    const allPosts = (await db
+      .find({ senderId: user._id.toString() })
+      .toArray()) as unknown as Post[];
+
+    const lastTime = allPosts.sort(
+      (timestamp1: Post, timestamp2: Post) =>
+        timestamp2.timestamp - timestamp1.timestamp
+    )[0].timestamp;
+
+    if (Date.now() - lastTime < 30000) {
+      return res.status(200).json({
+        message: "Please wait before posting again.",
+        type: "post",
+      });
+    }
+
     if (filter.isProfane(content)) {
       return res.status(200).json({
         message: "Please don't use any bad language.",
-        type: "server",
+        type: "post",
       });
     }
 

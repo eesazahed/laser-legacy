@@ -8,7 +8,7 @@
 
 .container {
   border: 1px solid black;
-  margin: 10px;
+  margin: 30px 10px 30px 10px;
   border-radius: 10px;
 }
 
@@ -18,13 +18,11 @@
 
 .content {
   word-wrap: break-word;
-  padding: 15px;
-  margin: 10px;
 }
 
 .content,
 .sender {
-  padding-left: 10px;
+  margin: 20px;
 }
 
 .info {
@@ -35,10 +33,6 @@
 .link {
   color: #0070f3;
   text-decoration: underline;
-}
-
-.name {
-  margin: 10px;
 }
 
 .footer {

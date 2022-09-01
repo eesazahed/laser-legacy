@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { Post, User } from "../../../types";
+import type { Post, PostComment, User } from "../../../types";
 import clientPromise from "../../../lib/mongodb";
 import getUserFromSession from "../../../utils/getUserFromSession";
 import getPostById from "../../../utils/getPostById";
@@ -27,6 +27,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res
         .status(401)
         .json({ message: "Post doesn't exist", type: "server" });
+    }
+
+    const allComments = (await db
+      .find({ senderId: user._id.toString() })
+      .toArray()) as unknown as PostComment[];
+
+    const lastTime = allComments.sort(
+      (timestamp1: PostComment, timestamp2: PostComment) =>
+        timestamp2.timestamp - timestamp1.timestamp
+    )[0].timestamp;
+
+    if (Date.now() - lastTime < 10000) {
+      return res.status(200).json({
+        message: "Please wait before commenting again.",
+        type: "comment",
+      });
     }
 
     if (filter.isProfane(data.comment)) {

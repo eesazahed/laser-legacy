@@ -67,16 +67,24 @@
   margin-bottom: 50px;
 }
 
-.profile {
-  min-width: 33.33vw;
-}
-
 .bio {
   background-color: #e0e6ed;
   padding: 15px;
   margin: 30px 0px 30px 0px;
   border-radius: 10px;
   word-wrap: break-word;
+}
+
+@media (min-width: 900px) {
+  .profile {
+    width: 33.3vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile {
+    width: 80vw;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
