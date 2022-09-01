@@ -8,7 +8,7 @@ const getSuggestedProfiles = async (req: any) => {
 
     const users = (await clientPromise).db().collection("users");
     const userArray = (await users.find({}).toArray()) as unknown as User[];
-    const suggested = [];
+    let suggested = [];
 
     for (const userId in userArray) {
       const thisUser = userArray[userId];
@@ -19,7 +19,7 @@ const getSuggestedProfiles = async (req: any) => {
       });
     }
 
-    suggested.filter(
+    suggested = suggested.filter(
       (suggestedUser) => suggestedUser._id !== user._id.toString()
     );
 
