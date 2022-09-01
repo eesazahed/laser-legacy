@@ -17,7 +17,8 @@
 }
 
 .content {
-  padding: 10px 0px 10px 0px;
+  word-wrap: break-word;
+  padding: 10px;
 }
 
 .content,
