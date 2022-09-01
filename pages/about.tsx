@@ -11,8 +11,8 @@ const About: NextPage = () => {
 
       <p className={styles.about}>
         This platform is supposed to be a place where people can enjoy other
-        users&apos; posts without tracking, suggestions, or ads. This site is
-        free for anyone, anywhere to use without distraction.
+        users&apos; posts without tracking or ads. This site is free for anyone,
+        anywhere to use without distraction.
         <br />
         <br />
         Sign up now if your ready! If not, then don&apos;t worry. Humans have

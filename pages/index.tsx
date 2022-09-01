@@ -2,19 +2,22 @@ import type { NextPage } from "next";
 import { getSession, useSession } from "next-auth/react";
 import PageHead from "../components/PageHead";
 import SignedOut from "../components/SignedOut";
+import Username from "../components/Username";
 import UserPost from "../components/UserPost";
 import styles from "../styles/Home.module.css";
-import type { Post, PublicUser, User } from "../types";
+import type { BasicUserProfile, Post, PublicUser, User } from "../types";
 import getFeed from "../utils/getFeed";
+import getSuggestedProfiles from "../utils/getSuggestedProfiles";
 import getUserFromSession from "../utils/getUserFromSession";
 import greeting from "../utils/greeting";
 
 interface Props {
   user: PublicUser;
   feed: Post[];
+  suggested: BasicUserProfile[];
 }
 
-const Home: NextPage<Props> = ({ user, feed }) => {
+const Home: NextPage<Props> = ({ user, feed, suggested }) => {
   const { data: session, status } = useSession();
 
   return (
@@ -35,7 +38,21 @@ const Home: NextPage<Props> = ({ user, feed }) => {
             {greeting()}, {user.username}.
           </h1>
 
-          {feed.length > 0 ? (
+          {suggested && suggested.length > 0 && (
+            <div className={styles.feed}>
+              <p className={styles.description}>Suggested users:</p>
+              {suggested.map((suggestedUser: BasicUserProfile) => {
+                return (
+                  <p key={suggestedUser._id}>
+                    {suggestedUser.name} (@
+                    <Username username={suggestedUser.username} />)
+                  </p>
+                );
+              })}
+            </div>
+          )}
+
+          {feed && feed.length > 0 ? (
             <div className={styles.feed}>
               <p className={styles.description}>
                 Latest posts from people you&apos;re following 😎
@@ -69,14 +86,17 @@ export const getServerSideProps = async (context: any) => {
 
   let currentUser = null;
   let currentFeed = null;
+  let currentSuggested = null;
 
   if (session) {
     const user = (await getUserFromSession(context.req)) as unknown as User;
     const feed = await getFeed(context.req);
+    const suggested = await getSuggestedProfiles();
 
     if (user) {
       currentUser = user.public;
       currentFeed = JSON.parse(JSON.stringify(feed));
+      currentSuggested = suggested;
     }
   }
 
@@ -84,6 +104,7 @@ export const getServerSideProps = async (context: any) => {
     props: {
       user: currentUser,
       feed: currentFeed,
+      suggested: currentSuggested,
     },
   };
 };
