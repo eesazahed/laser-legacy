@@ -14,8 +14,8 @@ const getSuggestedProfiles = async (req: any) => {
       const thisUser = userArray[userId];
 
       if (
-        thisUser.public.followers.some(
-          (follower) => follower._id !== user.public._id
+        !thisUser.public.followers.some(
+          (follower) => follower._id === user.public._id
         )
       ) {
         suggested.push({
