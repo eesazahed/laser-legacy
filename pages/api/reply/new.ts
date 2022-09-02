@@ -35,16 +35,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .find({ senderId: user._id.toString() })
       .toArray()) as unknown as Reply[];
 
-    const lastTime = allReplies.sort(
-      (timestamp1: Reply, timestamp2: Reply) =>
-        timestamp2.timestamp - timestamp1.timestamp
-    )[0].timestamp;
+    if (allReplies.length > 0) {
+      const lastTime = allReplies.sort(
+        (timestamp1: Reply, timestamp2: Reply) =>
+          timestamp2.timestamp - timestamp1.timestamp
+      )[0].timestamp;
 
-    if (Date.now() - lastTime < 10000) {
-      return res.status(200).json({
-        message: "Please wait before replying again.",
-        type: "reply",
-      });
+      if (Date.now() - lastTime < 10000) {
+        return res.status(200).json({
+          message: "Please wait before replying again.",
+          type: "reply",
+        });
+      }
     }
 
     if (filter.isProfane(data.reply)) {

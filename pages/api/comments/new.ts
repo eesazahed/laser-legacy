@@ -33,18 +33,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .find({ senderId: user._id.toString() })
       .toArray()) as unknown as PostComment[];
 
-    const lastTime = allComments.sort(
-      (timestamp1: PostComment, timestamp2: PostComment) =>
-        timestamp2.timestamp - timestamp1.timestamp
-    )[0].timestamp;
+    if (allComments.length > 0) {
+      const lastTime = allComments.sort(
+        (timestamp1: PostComment, timestamp2: PostComment) =>
+          timestamp2.timestamp - timestamp1.timestamp
+      )[0].timestamp;
 
-    if (Date.now() - lastTime < 10000) {
-      return res.status(200).json({
-        message: "Please wait before commenting again.",
-        type: "comment",
-      });
+      if (Date.now() - lastTime < 10000) {
+        return res.status(200).json({
+          message: "Please wait before commenting again.",
+          type: "comment",
+        });
+      }
     }
-
     if (filter.isProfane(data.comment)) {
       return res.status(200).json({
         message: "Please don't use any bad language.",

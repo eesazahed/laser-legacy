@@ -22,16 +22,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       .find({ senderId: user._id.toString() })
       .toArray()) as unknown as Post[];
 
-    const lastTime = allPosts.sort(
-      (timestamp1: Post, timestamp2: Post) =>
-        timestamp2.timestamp - timestamp1.timestamp
-    )[0].timestamp;
+    if (allPosts.length > 0) {
+      const lastTime = allPosts.sort(
+        (timestamp1: Post, timestamp2: Post) =>
+          timestamp2.timestamp - timestamp1.timestamp
+      )[0].timestamp;
 
-    if (Date.now() - lastTime < 30000) {
-      return res.status(200).json({
-        message: "Please wait before posting again.",
-        type: "post",
-      });
+      if (Date.now() - lastTime < 30000) {
+        return res.status(200).json({
+          message: "Please wait before posting again.",
+          type: "post",
+        });
+      }
     }
 
     if (filter.isProfane(content)) {
