@@ -30,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       if (Date.now() - lastTime < 30000) {
         return res.status(200).json({
-          message: "Please wait before posting again.",
+          message: "You can only post once every 30 seconds.",
           type: "post",
         });
       }

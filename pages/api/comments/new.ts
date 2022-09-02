@@ -41,7 +41,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       if (Date.now() - lastTime < 10000) {
         return res.status(200).json({
-          message: "Please wait before commenting again.",
+          message: "You can only comment once every 10 seconds.",
           type: "comment",
         });
       }
