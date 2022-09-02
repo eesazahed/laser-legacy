@@ -75,13 +75,13 @@
   word-wrap: break-word;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   .profile {
-    width: 33.3vw;
+    width: 40vw;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
   .profile {
     width: 80vw;
   }
