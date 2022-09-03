@@ -27,6 +27,9 @@ const PostReply: NextPage<Props> = ({ reply }) => {
   const Post = useContext(PostContext);
 
   const replyToReply = async () => {
+    setMessage("Posting...");
+    setMessageType("success");
+
     const request = await fetch(
       `${process.env.NEXT_PUBLIC_URL}/api/reply/new`,
       {

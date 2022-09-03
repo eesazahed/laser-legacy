@@ -4,6 +4,7 @@ import PageHead from "../components/PageHead";
 import SignedOut from "../components/SignedOut";
 import Username from "../components/Username";
 import UserPost from "../components/UserPost";
+import ProfileContext from "../context/ProfileContext";
 import styles from "../styles/Home.module.css";
 import type { BasicUserProfile, Post, PublicUser, User } from "../types";
 import getFeed from "../utils/getFeed";
@@ -54,18 +55,14 @@ const Home: NextPage<Props> = ({ user, feed, suggested }) => {
 
           {feed && feed.length > 0 ? (
             <div className={styles.feed}>
-              <p className={styles.description}>
-                Latest posts from people you&apos;re following 😎
-              </p>
-              {feed.map((post: Post) => {
-                return (
-                  <UserPost
-                    likedPosts={user.likedPosts}
-                    post={post}
-                    key={post._id.toString()}
-                  />
-                );
-              })}
+              <ProfileContext.Provider value={{ user: user }}>
+                <p className={styles.description}>
+                  Latest posts from people you&apos;re following 😎
+                </p>
+                {feed.map((post: Post) => {
+                  return <UserPost post={post} key={post._id.toString()} />;
+                })}
+              </ProfileContext.Provider>
             </div>
           ) : (
             <p className={styles.description}>

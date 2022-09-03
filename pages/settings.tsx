@@ -31,6 +31,9 @@ const Settings: NextPage<Props> = ({ user }) => {
   const submitData = async (e: any) => {
     e.preventDefault();
 
+    setMessage("Updating settings...");
+    setMessageType("success");
+
     const request = await fetch("api/users/settings", {
       method: "POST",
       body: JSON.stringify(formData),

@@ -2,25 +2,26 @@ import type { NextPage } from "next";
 import type { Post, TimestampId } from "../types";
 import Username from "./Username";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import styles from "../styles/UserPost.module.css";
 import ReactMarkdown from "react-markdown";
+import ProfileContext from "../context/ProfileContext";
 
 interface Props {
-  _id?: string;
-  likedPosts?: TimestampId[];
   post: Post;
 }
 
-const UserPost: NextPage<Props> = ({ _id, likedPosts, post }) => {
+const UserPost: NextPage<Props> = ({ post }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
+  const Profile = useContext(ProfileContext);
 
   const [liked, likePost] = useState<boolean>(
-    likedPosts?.some((likedPost) => likedPost._id === post._id.toString()) ||
-      false
+    Profile.user?.likedPosts?.some(
+      (likedPost) => likedPost._id === post._id.toString()
+    ) || false
   );
   const [likes, setLikes] = useState<number>(post.likedUsers.length);
 
@@ -121,8 +122,8 @@ const UserPost: NextPage<Props> = ({ _id, likedPosts, post }) => {
                 <a href={`/post/${post._id.toString()}/likes`}>{likes}</a>
               </span>
               {router.asPath.includes("/post/") ? (
-                _id &&
-                post.senderId === _id && (
+                Profile.user &&
+                (post.senderId === Profile.user._id || Profile.user.admin) && (
                   <span
                     onClick={deletePost}
                     className={`${styles.link} ${styles.delete}`}

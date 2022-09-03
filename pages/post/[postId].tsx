@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
 import { getSession, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
 import Comment from "../../components/Comment";
 import CommentBox from "../../components/CommentBox";
 import PageHead from "../../components/PageHead";
 import UserPost from "../../components/UserPost";
 import PostContext from "../../context/PostContext";
+import ProfileContext from "../../context/ProfileContext";
 import styles from "../../styles/Post.module.css";
 import type { Post, PublicUser, User } from "../../types";
 import copy from "../../utils/copy";
@@ -19,7 +19,6 @@ interface Props {
 
 const Profile: NextPage<Props> = ({ user, post }) => {
   const { data: session, status } = useSession();
-  const router = useRouter();
 
   return (
     <div className={styles.container}>
@@ -43,13 +42,9 @@ const Profile: NextPage<Props> = ({ user, post }) => {
         <PostContext.Provider value={{ user: user, post: post }}>
           <main className={styles.main}>
             <div className={styles.post}>
-              <UserPost
-                _id={user ? user._id : undefined}
-                likedPosts={user ? user.likedPosts : undefined}
-                post={post}
-                key={post._id.toString()}
-              />
-
+              <ProfileContext.Provider value={{ user: user }}>
+                <UserPost post={post} key={post._id.toString()} />
+              </ProfileContext.Provider>
               <button
                 className={styles.copy}
                 onClick={() =>
@@ -60,14 +55,10 @@ const Profile: NextPage<Props> = ({ user, post }) => {
               >
                 Copy link
               </button>
-
               <br />
               <br />
-
               {user && <CommentBox _id={post._id.toString()} />}
-
               <br />
-
               {post.comments && (
                 <div className={styles.comments}>
                   <p>Comments ({post.commentsCount}):</p>

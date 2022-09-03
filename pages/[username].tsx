@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import PageHead from "../components/PageHead";
 import UserPost from "../components/UserPost";
+import ProfileContext from "../context/ProfileContext";
 import styles from "../styles/Profile.module.css";
 import type { Post, PublicUser, User } from "../types";
 import copy from "../utils/copy";
@@ -146,16 +147,11 @@ const Profile: NextPage<Props> = ({ user, profile, posts }) => {
             </section>
             {posts.length > 0 ? (
               <div className={styles.feed}>
-                {posts.map((post: Post) => {
-                  return (
-                    <UserPost
-                      _id={user ? user._id : undefined}
-                      likedPosts={user ? user.likedPosts : undefined}
-                      post={post}
-                      key={post._id.toString()}
-                    />
-                  );
-                })}
+                <ProfileContext.Provider value={{ user: user }}>
+                  {posts.map((post: Post) => {
+                    return <UserPost key={post._id.toString()} post={post} />;
+                  })}
+                </ProfileContext.Provider>
               </div>
             ) : (
               <p>This user no has no posts.</p>

@@ -21,6 +21,9 @@ const CommentBox: NextPage<Props> = ({ _id }) => {
   const submitData = async (e: any) => {
     e.preventDefault();
 
+    setMessage("Posting...");
+    setMessageType("success");
+
     const request = await fetch("/api/comments/new", {
       method: "POST",
       body: JSON.stringify({ postId: _id, comment: comment }),

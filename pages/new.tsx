@@ -22,8 +22,11 @@ const New: NextPage<Props> = ({ user }) => {
   const [message, setMessage] = useState<string>("");
   const [messageType, setMessageType] = useState<string>("");
 
-  const submitData = async (e: any) => {
+  const newPost = async (e: any) => {
     e.preventDefault();
+
+    setMessage("Posting...");
+    setMessageType("success");
 
     const request = await fetch("/api/posts/new", {
       method: "POST",
@@ -89,7 +92,7 @@ const New: NextPage<Props> = ({ user }) => {
               ""
             )}
 
-            <button className={styles.btn} onClick={submitData}>
+            <button className={styles.btn} onClick={newPost}>
               Post!
             </button>
           </form>
