@@ -23,8 +23,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         .json({ message: "Post doesn't exist", type: "server" });
     }
 
-    if (!user.public.admin || post.senderId !== user._id.toString()) {
-      return res.status(401).json({ message: "Invalid Auth", type: "auth" });
+    if (post.senderId !== user._id.toString()) {
+      if (!user.public.admin) {
+        return res.status(401).json({ message: "Invalid Auth", type: "auth" });
+      }
     }
 
     const posts = (await clientPromise).db().collection("posts");

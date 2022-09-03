@@ -1,5 +1,6 @@
 import clientPromise from "../lib/mongodb";
 import type { User } from "../types";
+import getBasicUserProfile from "./getBasicUserProfile";
 import getUserFromSession from "./getUserFromSession";
 
 const getSuggestedProfiles = async (req: any) => {
@@ -32,6 +33,21 @@ const getSuggestedProfiles = async (req: any) => {
 
     let shuffled = suggested.sort(() => 0.5 - Math.random());
     let selected = shuffled.slice(0, 3);
+
+    if (
+      !user.public.following.some(
+        (following) => following._id === "63110a927a37f60a3572d1f5"
+      ) &&
+      !selected.some(
+        (suggestUser) => suggestUser._id === "63110a927a37f60a3572d1f5"
+      )
+    ) {
+      selected.unshift({
+        name: "Eesa Zahed",
+        username: "eesa",
+        _id: "63110a927a37f60a3572d1f5",
+      });
+    }
 
     return selected;
   } catch {
