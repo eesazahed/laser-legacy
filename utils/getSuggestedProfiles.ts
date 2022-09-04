@@ -35,6 +35,7 @@ const getSuggestedProfiles = async (req: any) => {
     let selected = shuffled.slice(0, 3);
 
     if (
+      user.public._id !== "63110a927a37f60a3572d1f5" &&
       !user.public.following.some(
         (following) => following._id === "63110a927a37f60a3572d1f5"
       ) &&
