@@ -18,7 +18,7 @@
 }
 
 .copy {
-  background-color: grey;
+  background-color: #e0e6ed;
   border: none;
   border-radius: 10px;
   margin: 25px 25px 25px 10px;
@@ -34,5 +34,11 @@
 @media (max-width: 1000px) {
   .post {
     width: 80vw;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .copy {
+    background-color: #434547;
   }
 }

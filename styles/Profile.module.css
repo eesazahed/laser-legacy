@@ -37,7 +37,7 @@
 
 .copy,
 .unfollow {
-  background-color: grey;
+  background-color: #e0e6ed;
 }
 
 .follow {
@@ -88,6 +88,8 @@
 }
 
 @media (prefers-color-scheme: dark) {
+  .copy,
+  .unfollow,
   .bio {
     background-color: #434547;
   }

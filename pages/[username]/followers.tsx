@@ -42,7 +42,7 @@ const Followers: NextPage<Props> = ({ profile, followers }) => {
               </Link>
             </p>
             {followers.length === 0 && <p>This user has no followers.</p>}
-            <ul className={styles.followers}>
+            <ul>
               {followers.map((follower: Follower) => {
                 return (
                   <li key={follower._id}>

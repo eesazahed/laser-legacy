@@ -40,15 +40,19 @@ const Profile: NextPage<Props> = ({ postId, likes }) => {
                 <a>&larr; Back to post</a>
               </Link>
             </p>
-
-            {likes.map((likedUser: Follower) => {
-              return (
-                <li key={likedUser._id}>
-                  {likedUser.name} (@
-                  <Username username={likedUser.username} />)
-                </li>
-              );
-            })}
+            {likes.length === 0 && <p>This post has no likes</p>}
+            <ul>
+              {likes.map((likedUser: Follower) => {
+                return (
+                  <li key={likedUser._id}>
+                    <p>
+                      {likedUser.name} (@
+                      <Username username={likedUser.username} />)
+                    </p>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </main>
       )}
