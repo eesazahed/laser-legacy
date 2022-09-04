@@ -9,6 +9,7 @@
 .comment {
   margin: 30px 15px 10px 15px;
   padding: 15px;
+  height: 10vh;
   width: inherit;
 }
 

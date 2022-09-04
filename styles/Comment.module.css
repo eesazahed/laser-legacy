@@ -41,6 +41,10 @@
   margin: 15px;
 }
 
+.reply-container textarea {
+  height: 10vh;
+}
+
 .post {
   background-color: #0070f3;
   color: white;

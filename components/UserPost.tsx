@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
-import type { Post, TimestampId } from "../types";
+import type { Post } from "../types";
 import Username from "./Username";
-import "bootstrap-icons/font/bootstrap-icons.css";
 import { useContext, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
@@ -128,7 +127,7 @@ const UserPost: NextPage<Props> = ({ post }) => {
                     onClick={deletePost}
                     className={`${styles.link} ${styles.delete}`}
                   >
-                    Delete<i className="bi bi-trash"></i>
+                    Delete
                   </span>
                 )
               ) : (

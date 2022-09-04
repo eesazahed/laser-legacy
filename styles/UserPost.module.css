@@ -52,38 +52,26 @@
 }
 
 .like,
-.unlike {
+.unlike,
+.delete {
+  text-decoration: none;
+  cursor: pointer;
   margin-right: 0.25rem;
 }
 
-.unlike {
+.unlike,
+.delete {
   color: red;
 }
 
+.delete:hover,
 .unlike:hover {
   color: #ff5858;
-}
-
-.delete {
-  cursor: pointer;
-  text-decoration: none;
-  color: black;
-}
-
-.delete i {
-  padding-left: 0.5px;
-}
-
-.delete:hover {
-  color: red;
 }
 
 @media (prefers-color-scheme: dark) {
   .container {
     border-color: grey;
-  }
-  .delete {
-    color: white;
   }
   .footer {
     background-color: #1e1e1e;
