@@ -46,6 +46,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         });
       }
     }
+    
     if (filter.isProfane(data.comment)) {
       return res.status(200).json({
         message: "Please don't use any bad language.",
