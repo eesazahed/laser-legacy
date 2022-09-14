@@ -45,19 +45,12 @@ const auth = async (req: NextApiRequest, res: NextApiResponse) => {
 
           const user = (await db.findOne({ email: email })) as unknown as User;
 
-          const forwarded = req.headers["x-forwarded-for"];
-
-          const ip = forwarded;
-          // typeof forwarded === "string"
-          //   ? forwarded.split(/, /)[0]
-          //   : req.socket.remoteAddress;
-
           await db
             .updateOne(
               { email: email },
               {
                 $set: {
-                  ip: ip,
+                  ip: req.headers["x-forwarded-for"] || "",
                   "public.lastOnline": Date.now(),
                 },
               }
