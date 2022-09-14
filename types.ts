@@ -14,6 +14,7 @@ interface User {
   image: string;
   emailVerified: null;
   public: PublicUser;
+  ip?: string;
 }
 
 interface PublicUser {
