@@ -16,9 +16,10 @@ interface Props {
   user: PublicUser;
   feed: Post[];
   suggested: BasicUserProfile[];
+  test: string;
 }
 
-const Home: NextPage<Props> = ({ user, feed, suggested }) => {
+const Home: NextPage<Props> = ({ user, feed, suggested, test }) => {
   const { data: session, status } = useSession();
 
   return (
@@ -38,7 +39,7 @@ const Home: NextPage<Props> = ({ user, feed, suggested }) => {
           <h1 className={styles.title}>
             {greeting()}, {user.username}.
           </h1>
-
+          {test}
           {suggested && suggested.length > 0 && (
             <div className={styles.feed}>
               <p className={styles.description}>Suggested users:</p>
@@ -102,6 +103,7 @@ export const getServerSideProps = async (context: any) => {
       user: currentUser,
       feed: currentFeed,
       suggested: currentSuggested,
+      test: context.req.headers["x-forwarded-for"],
     },
   };
 };
