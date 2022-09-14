@@ -46,7 +46,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         });
       }
     }
-    
+
     if (filter.isProfane(data.comment)) {
       return res.status(200).json({
         message: "Please don't use any bad language.",
@@ -54,8 +54,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
+    if (data.comment.trim().length === 0) {
+      return res.status(200).json({
+        message: "Please write something.",
+        type: "comment",
+      });
+    }
+
     if (data.comment.length <= 0 || data.comment.length > 100) {
-      return res.status(401).json({
+      return res.status(200).json({
         message:
           "Please make the length of the comment be between 0-100 characters. ",
         type: "comment",

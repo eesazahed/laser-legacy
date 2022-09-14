@@ -40,6 +40,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
+    if (data.name.trim().length === 0) {
+      return res.status(200).json({
+        message: "Please write something.",
+        type: "name",
+      });
+    }
+
     if (data.name.length < 4 || data.name.length > 15) {
       return res.status(200).json({
         message: "Please enter a name between 4-15 characters.",
@@ -83,6 +90,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json({
         message: `Username "${data.username}" is unavailable.`,
         type: "username",
+      });
+    }
+
+    if (data.bio.trim().length === 0) {
+      return res.status(200).json({
+        message: "Please write something.",
+        type: "bio",
       });
     }
 

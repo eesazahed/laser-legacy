@@ -43,8 +43,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
+    if (content.trim().length === 0) {
+      return res.status(200).json({
+        message: "Please write something.",
+        type: "post",
+      });
+    }
+
     if (content.length <= 10 || content.length > 200) {
-      return res.status(401).json({
+      return res.status(200).json({
         message:
           "Please make the length of the post be between 10-200 characters. ",
         type: "post",

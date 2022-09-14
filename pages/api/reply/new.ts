@@ -56,6 +56,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
 
+    if (data.reply.trim().length === 0) {
+      return res.status(200).json({
+        message: "Please write something.",
+        type: "reply",
+      });
+    }
+
+    if (data.reply.length <= 0 || data.reply.length > 100) {
+      return res.status(200).json({
+        message:
+          "Please make the length of the reply be between 0-100 characters. ",
+        type: "reply",
+      });
+    }
+
     if (data.parentId) {
       const reply = (await getReplyById(data.parentId)) as unknown as Reply;
 
@@ -63,14 +78,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res
           .status(401)
           .json({ message: "Reply doesn't exist", type: "server" });
-      }
-
-      if (data.reply.length <= 0 || data.reply.length > 100) {
-        return res.status(401).json({
-          message:
-            "Please make the length of the reply be between 0-100 characters. ",
-          type: "reply",
-        });
       }
 
       const time = Date.now();
@@ -141,14 +148,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         return res
           .status(401)
           .json({ message: "Comment doesn't exist", type: "server" });
-      }
-
-      if (data.reply.length <= 0 || data.reply.length > 100) {
-        return res.status(401).json({
-          message:
-            "Please make the length of the reply be between 0-100 characters. ",
-          type: "reply",
-        });
       }
 
       const time = Date.now();
