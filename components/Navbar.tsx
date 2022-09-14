@@ -6,13 +6,16 @@ import styles from "../styles/Navbar.module.css";
 import { useState } from "react";
 import Links from "./Links";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 const Navbar: NextPage = () => {
   const { data: session, status } = useSession();
 
   const [showNav, setShowNav] = useState<boolean>(false);
 
-  if (status === "loading") {
+  const router = useRouter();
+
+  if (status === "loading" && router.asPath !== "/banned") {
     return (
       <header className={styles.container}>
         <nav className={styles.navbar}>
