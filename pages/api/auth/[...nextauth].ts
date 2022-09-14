@@ -50,7 +50,7 @@ const auth = async (req: NextApiRequest, res: NextApiResponse) => {
               { email: email },
               {
                 $set: {
-                  ip: req.socket.remoteAddress,
+                  ip: req.headers["x-forwarded-for"],
                   "public.lastOnline": Date.now(),
                 },
               }
