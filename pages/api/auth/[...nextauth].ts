@@ -47,7 +47,7 @@ const auth = async (req: NextApiRequest, res: NextApiResponse) => {
 
           const forwarded = req.headers["x-forwarded-for"];
 
-          const ip = req.headers["x-real-ip"] || req.socket.remoteAddress;
+          const ip = forwarded;
           // typeof forwarded === "string"
           //   ? forwarded.split(/, /)[0]
           //   : req.socket.remoteAddress;
