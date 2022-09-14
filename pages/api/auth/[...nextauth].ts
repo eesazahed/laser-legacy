@@ -6,8 +6,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { OAuthConfig } from "next-auth/providers";
 import type { User } from "../../../types";
 
-const requestIp = require("request-ip");
-
 const GOOGLE_AUTHORIZATION_URL =
   "https://accounts.google.com/o/oauth2/v2/auth" +
   new URLSearchParams({
@@ -52,7 +50,7 @@ const auth = async (req: NextApiRequest, res: NextApiResponse) => {
               { email: email },
               {
                 $set: {
-                  ip: requestIp.getClientIp(req) || "",
+                  ip: req.socket.remoteAddress,
                   "public.lastOnline": Date.now(),
                 },
               }
