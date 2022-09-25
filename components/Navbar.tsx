@@ -1,12 +1,13 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "../styles/Navbar.module.css";
 import { useState } from "react";
 import Links from "./Links";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
 const Navbar: NextPage = () => {
   const { data: session, status } = useSession();
@@ -14,6 +15,10 @@ const Navbar: NextPage = () => {
   const [showNav, setShowNav] = useState<boolean>(false);
 
   const router = useRouter();
+
+  const fetcher = (url: string) => fetch(url).then((res) => res.json());
+  const { data, error } = useSWR("/api/notifications", fetcher);
+  const unread = data;
 
   if (status === "loading" && router.asPath !== "/banned") {
     return (
@@ -41,7 +46,7 @@ const Navbar: NextPage = () => {
             LaserSocial
           </a>
         </Link>
-        <Links mobile={false} />
+        <Links unread={unread} mobile={false} />
 
         <div
           className={styles.menu}
@@ -50,14 +55,20 @@ const Navbar: NextPage = () => {
           {showNav ? (
             <i className="bi bi-x-lg"></i>
           ) : (
-            <i className="bi bi-list"></i>
+            <div className={styles.count}>
+              <i className="bi bi-list">
+                {typeof unread === "number" && unread > 0 && (
+                  <span className={styles.indicator}>{unread}</span>
+                )}
+              </i>
+            </div>
           )}
         </div>
       </nav>
 
       {showNav && (
         <div className={styles.dropdown}>
-          <Links mobile={true} />
+          <Links unread={unread} mobile={true} />
         </div>
       )}
     </header>

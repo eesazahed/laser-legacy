@@ -3,17 +3,14 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "../styles/Navbar.module.css";
-import useSWR from "swr";
 
 interface Props {
+  unread: any;
   mobile: boolean;
 }
 
-const Links: NextPage<Props> = ({ mobile }) => {
+const Links: NextPage<Props> = ({ unread, mobile }) => {
   const { data: session, status } = useSession();
-
-  const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data, error } = useSWR("/api/notifications", fetcher);
 
   return (
     <div
@@ -45,8 +42,8 @@ const Links: NextPage<Props> = ({ mobile }) => {
             <a className={styles.link}>
               <div className={styles.count}>
                 <i className="bi bi-bell"></i>
-                {typeof data === "number" && data > 0 && (
-                  <span className={styles.indicator}>{data}</span>
+                {typeof unread === "number" && unread > 0 && (
+                  <span className={styles.indicator}>{unread}</span>
                 )}
               </div>
               {mobile && <span className={styles.text}>Notifications</span>}

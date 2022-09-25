@@ -124,6 +124,17 @@
   .link .text {
     margin-left: 10px;
   }
+
+  .navbar .indicator {
+    position: absolute;
+    top: -8px;
+    right: -13px;
+    padding: 1px 7px;
+    background-color: red;
+    color: white;
+    font-size: 0.65em;
+    border-radius: 50%;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
