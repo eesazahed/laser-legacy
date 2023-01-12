@@ -67,10 +67,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const usernameExists = () => {
-      let usernameOwner = users.find(
-        (user) =>
-          user.public.username.toLowerCase() === data.username.toLowerCase()
-      );
+      let usernameOwner = users.find((user) => {
+        if (user.public.username) {
+          return (
+            user.public.username.toLowerCase() === data.username.toLowerCase()
+          );
+        }
+      });
 
       if (usernameOwner?.public._id === user.public._id) {
         // if current user has username
@@ -90,13 +93,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).json({
         message: `Username "${data.username}" is unavailable.`,
         type: "username",
-      });
-    }
-
-    if (data.bio.trim().length === 0) {
-      return res.status(200).json({
-        message: "Please write something.",
-        type: "bio",
       });
     }
 

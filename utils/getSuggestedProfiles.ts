@@ -13,17 +13,22 @@ const getSuggestedProfiles = async (req: any) => {
 
     for (const userId in userArray) {
       const thisUser = userArray[userId];
-
       if (
-        !thisUser.public.followers.some(
-          (follower) => follower._id === user.public._id
-        )
+        thisUser.public.name &&
+        thisUser.public.username &&
+        thisUser.public._id
       ) {
-        suggested.push({
-          name: thisUser.public.name,
-          username: thisUser.public.username,
-          _id: thisUser.public._id,
-        });
+        if (
+          !thisUser.public.followers.some(
+            (follower) => follower._id === user.public._id
+          )
+        ) {
+          suggested.push({
+            name: thisUser.public.name,
+            username: thisUser.public.username,
+            _id: thisUser.public._id,
+          });
+        }
       }
     }
 
