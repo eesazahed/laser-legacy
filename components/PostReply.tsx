@@ -87,7 +87,9 @@ const PostReply: NextPage<Props> = ({ reply }) => {
         </p>
 
         <div className={styles.content}>
-          <ReactMarkdown skipHtml={true}>{reply.content}</ReactMarkdown>
+          {reply.content.split("\n").map((text, key) => {
+            return <p key={key}>{text}</p>;
+          })}
         </div>
 
         <p>

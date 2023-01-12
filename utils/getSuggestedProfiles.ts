@@ -1,6 +1,6 @@
 import clientPromise from "../lib/mongodb";
-import type { User } from "../types";
-import getBasicUserProfile from "./getBasicUserProfile";
+import type { User, BasicUserProfile } from "../types";
+
 import getUserFromSession from "./getUserFromSession";
 
 const getSuggestedProfiles = async (req: any) => {
@@ -9,7 +9,7 @@ const getSuggestedProfiles = async (req: any) => {
 
     const users = (await clientPromise).db().collection("users");
     const userArray = (await users.find({}).toArray()) as unknown as User[];
-    let suggested = [];
+    let suggested: BasicUserProfile[] = [];
 
     for (const userId in userArray) {
       const thisUser = userArray[userId];

@@ -84,7 +84,9 @@ const Comment: NextPage<Props> = ({ comment }) => {
           </b>
         </p>
         <div className={styles.content}>
-          <ReactMarkdown skipHtml={true}>{comment.content}</ReactMarkdown>
+          {comment.content.split("\n").map((text, key) => {
+            return <p key={key}>{text}</p>;
+          })}
         </div>
         <p>
           <span className={styles.time}>
@@ -132,11 +134,12 @@ const Comment: NextPage<Props> = ({ comment }) => {
             </button>
           </div>
         )}
-        {Post.user && (Post.user.admin || Post.user._id === comment.senderId) && (
-          <div className={styles.delete}>
-            <p onClick={deleteComment}>Delete this comment</p>
-          </div>
-        )}
+        {Post.user &&
+          (Post.user.admin || Post.user._id === comment.senderId) && (
+            <div className={styles.delete}>
+              <p onClick={deleteComment}>Delete this comment</p>
+            </div>
+          )}
 
         {comment.commentRepliesCount > 0 && (
           <details className={styles.details}>

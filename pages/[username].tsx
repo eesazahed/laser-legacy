@@ -141,7 +141,9 @@ const Profile: NextPage<Props> = ({ user, profile, posts }) => {
               </p>
               {profile.bio && (
                 <div className={styles.bio}>
-                  <ReactMarkdown skipHtml={true}>{profile.bio}</ReactMarkdown>
+                  {profile.bio.split("\n").map((text, key) => {
+                    return <p key={key}>{text}</p>;
+                  })}
                 </div>
               )}
             </section>

@@ -97,7 +97,9 @@ const UserPost: NextPage<Props> = ({ post }) => {
             </p>
           </div>
           <div className={styles.content}>
-            <ReactMarkdown skipHtml={true}>{post.content}</ReactMarkdown>
+            {post.content.split("\n").map((text, key) => {
+              return <p key={key}>{text}</p>;
+            })}
           </div>
         </div>
         <div className={styles.footer}>
