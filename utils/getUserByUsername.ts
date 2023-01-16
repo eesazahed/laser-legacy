@@ -13,8 +13,11 @@ const getUserByUsername = async (username: string) => {
       .then((result) => {
         const findUser = result.find(
           (user) =>
-            user.public.username.toLowerCase() === username.toLowerCase()
+            user.public.username?.toLowerCase() === username.toLowerCase()
         ) as User;
+
+        console.log(findUser);
+
         if (findUser) {
           user = findUser.public;
         }
