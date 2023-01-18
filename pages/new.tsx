@@ -63,7 +63,7 @@ const New: NextPage<Props> = ({ user }) => {
             Hey, {user.username}, here is where you can create a post.
           </p>
           <form className={styles.form}>
-            <label htmlFor="new">Write something (markdown supported)</label>
+            <label htmlFor="new">Write something</label>
             <textarea
               placeholder="What's up?"
               id="new"
