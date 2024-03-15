@@ -39,7 +39,7 @@ const SignIn: NextPage<Props> = ({ providers }) => {
           ))}
           <p className={styles.about}>
             By using this platform you must be over the age of <b>13</b>.
-            <br />
+            <br /><br />
             We use Google authentication as a quick and easy sign-in for users.
             Your email address, name, and photo will never be shared to
             third-parties.
