@@ -12,7 +12,7 @@ const Welcome: NextPage = () => {
         <p className={styles.description}>
           Thanks for signing up!{" "}
           <a
-            href="https://laser.vercel.app/settings"
+            href="https://laser-legacy.vercel.app/settings"
             referrerPolicy="no-referrer"
             className={styles.link}
           >
