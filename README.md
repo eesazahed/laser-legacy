@@ -1,7 +1,10 @@
-# LaserSocial
+# This is the legacy version! Try out [LaserSocial](https://laser.vercel.app/feed)!
 
-I built a social media app - https://laser.vercel.app/ <br/>
-Check out my profile - https://laser.vercel.app/eesa <br/>
+
+## LaserSocial - Legacy
+
+I built a social media app - https://laser-legacy.vercel.app/ <br/>
+Check out my profile - https://laser-legacy.vercel.app/eesa <br/>
 
 <br />
 
